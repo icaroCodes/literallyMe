@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { Play, Pause, SkipBack, SkipForward, Music } from 'lucide-react';
 import { favorites } from '../data/content';
 

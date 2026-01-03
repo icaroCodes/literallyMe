@@ -1,5 +1,3 @@
-import { Tv, Film, Gamepad2, Disc, Code, User } from 'lucide-react';
-
 export const favorites = {
   series: [
     "Dexter",
