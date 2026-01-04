@@ -5,6 +5,7 @@ import { MinimalList } from './components/MinimalList';
 import { CharacterGrid } from './components/CharacterGrid';
 import { MusicPlayer } from './components/MusicPlayer';
 import { favorites } from './data/content';
+import { VirtualScroll } from './components/VirtualScroll';
 
 function App() {
   const [loading, setLoading] = useState(true);
@@ -50,12 +51,19 @@ function App() {
                
                <nav className="hidden md:flex items-center gap-6 text-sm font-medium">
                  <a href="#about" className="hover:opacity-70 transition-opacity">Sobre</a>
-                 <a href="#favorites" className="hover:opacity-70 transition-opacity">Favoritos</a>
                  <a href="#characters" className="hover:opacity-70 transition-opacity">Personagens</a>
                </nav>
             </header>
 
+            <VirtualScroll>
             <main className="pt-32 px-6 max-w-4xl mx-auto">
+              <motion.div
+                className="absolute -top-32 left-1/2 -translate-x-1/2 w-[60vw] h-[60vw] rounded-full"
+                style={{ background: 'radial-gradient(closest-side, rgba(24,24,27,0.06), transparent 70%)' }}
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 1.2, ease: 'easeOut' }}
+              />
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -63,18 +71,16 @@ function App() {
                 className="max-w-3xl mb-32"
               >
                 <h1 className="text-5xl md:text-7xl font-semibold tracking-tighter leading-[1.1] mb-8 text-zinc-900">
-                  Minimalist interfaces. <br />
-                  Digital craftsmanship.
+                  As coisas que eu mais gosto.
                 </h1>
                 <p className="text-xl md:text-2xl text-zinc-500 font-light leading-relaxed max-w-2xl">
-                  Criando experiências digitais que unem estética e funcionalidade com precisão pixel-perfect.
+                  Minhas Séries Favoritas, Filmes, Jogos, Músicas e Personagens.
                 </p>
               </motion.div>
 
               <Section title="Sobre Mim" id="about">
                 <p className="text-xl leading-relaxed text-zinc-600 font-light max-w-2xl">
-                  Sou um desenvolvedor apaixonado por criar interfaces que não apenas funcionam, mas encantam. 
-                  Busco a simplicidade em cada linha de código e em cada pixel. Meu objetivo é transformar ideias complexas em experiências intuitivas e memoráveis.
+                  Meu nome é Ícaro, tenho 12 anos e estudo programação. Atualmente, estou me preparando para me tornar um desenvolvedor Web Full Stack. Este projeto tem como objetivo testar, pela primeira vez, o uso do Framer Motion e do TypeScript.
                 </p>
                 <div className="mt-8 pt-8 border-t border-zinc-200">
                     <h3 className="text-sm font-medium uppercase tracking-widest text-zinc-400 mb-4">Hobby</h3>
@@ -85,10 +91,9 @@ function App() {
               <Section title="Séries Favoritas" id="favorites">
                 <div className="grid md:grid-cols-2 gap-12">
                    <div>
-                       <h3 className="text-sm font-medium uppercase tracking-widest text-zinc-400 mb-6">Must Watch</h3>
+                       <h3 className="text-sm font-medium uppercase tracking-widest text-zinc-400 mb-6">Bons para assitir</h3>
                        <MinimalList items={favorites.series} />
                    </div>
-                   {/* Espaço para futuras adições ou imagens */}
                 </div>
               </Section>
 
@@ -110,12 +115,13 @@ function App() {
 
               <Section title="Personagens" id="characters">
                 <p className="text-zinc-500 mb-8 font-light">
-                  Figuras complexas que inspiram narrativas profundas. Clique para explorar.
+                  Personagens extremamente interessantes.
                 </p>
                 <CharacterGrid />
               </Section>
 
             </main>
+            </VirtualScroll>
             
             <MusicPlayer />
           </>

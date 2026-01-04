@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X, Play } from 'lucide-react';
 import { favorites } from '../data/content';
+import { VideoEmbed } from './VideoEmbed';
 
 export const CharacterGrid = () => {
   const [selectedChar, setSelectedChar] = useState<typeof favorites.characters[0] | null>(null);
@@ -15,8 +16,12 @@ export const CharacterGrid = () => {
             layoutId={`card-${char.name}`}
             onClick={() => setSelectedChar(char)}
             className="group relative aspect-[3/4] bg-zinc-100 rounded-2xl overflow-hidden cursor-pointer"
+            whileHover={{ scale: 1.02, y: -2 }}
+            transition={{ type: 'spring', stiffness: 200, damping: 18 }}
           >
-            <div className="absolute inset-0 bg-zinc-200 group-hover:bg-zinc-300 transition-colors" />
+            <div className="absolute inset-0">
+              <VideoEmbed url={char.videoUrl} preview />
+            </div>
             <div className="absolute bottom-0 left-0 p-4 w-full bg-gradient-to-t from-black/50 to-transparent text-white">
               <h3 className="font-medium text-lg">{char.name}</h3>
               <p className="text-sm opacity-80">{char.role}</p>
@@ -51,14 +56,7 @@ export const CharacterGrid = () => {
                 <X className="w-5 h-5" />
               </button>
               
-              {/* Simulating Video Player */}
-              <div className="w-full h-full flex items-center justify-center bg-zinc-900 text-zinc-500">
-                <span className="text-sm">Video Player Placeholder for {selectedChar.name}</span>
-                {/* 
-                  Em um cenário real, aqui entraria um <video> ou iframe.
-                  Para demonstração, usamos um placeholder visual.
-                */}
-              </div>
+              <VideoEmbed url={selectedChar.videoUrl} />
 
               <div className="absolute bottom-0 left-0 w-full p-6 bg-gradient-to-t from-black/80 to-transparent">
                  <h2 className="text-2xl font-bold text-white">{selectedChar.name}</h2>

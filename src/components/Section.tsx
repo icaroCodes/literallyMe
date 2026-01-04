@@ -20,6 +20,13 @@ export const Section = ({ title, children, id, className = "" }: SectionProps) =
       >
         {title}
       </motion.h2>
+      <motion.div 
+        className="h-px bg-gradient-to-r from-zinc-200 via-zinc-300 to-zinc-200 mb-10"
+        initial={{ width: 0, opacity: 0 }}
+        whileInView={{ width: '100%', opacity: 1 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.8 }}
+      />
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}

@@ -7,6 +7,26 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+html {
+  scroll-behavior: smooth;
+  scrollbar-color: #b7d5e5 rgba(0,0,0,0.06);
+  scrollbar-width: thin;
+}
+
 body {
   @apply bg-zinc-50 text-zinc-900 antialiased;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+::-webkit-scrollbar-track {
+  background: rgba(0,0,0,0.06);
+}
+::-webkit-scrollbar-thumb {
+  background-color: #b7d5e5;
+  border-radius: 9999px;
+  border: 2px solid transparent;
+  background-clip: content-box;
 }

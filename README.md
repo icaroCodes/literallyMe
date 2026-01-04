@@ -1,73 +1,72 @@
-# React + TypeScript + Vite
+# literallyme
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Esse é um projeto pessoal que eu fiz pra me representar. A ideia foi criar uma página simples, bonita e fluida, com bastante atenção aos detalhes, microinterações e aquela estética minimalista inspirada no design da Apple.
 
-Currently, two official plugins are available:
+O site junta coisas que eu gosto: séries, filmes, jogos, músicas e personagens. Alguns personagens têm vídeos que abrem em um modal. Também criei um player de música próprio usando arquivos locais, além de uma rolagem virtual suave.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Usei esse projeto principalmente para estudar e testar React, TypeScript e animações.
 
-## React Compiler
+## Stack
+- Vite + React + TypeScript  
+- Tailwind CSS  
+- Framer Motion  
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## O que tem aqui
+- Rolagem virtual (fake scroll) com barra lateral customizada  
+- Cards de personagens com preview em vídeo e modal  
+- Player de música com:
+  - Arquivos locais na pasta `/audio`
+  - Capas das músicas no `/public`
+  - Avanço automático quando a música termina
+  - Fade-out suave ao pausar
+- Seções e listas com microinterações leves e discretas
 
-## Expanding the ESLint configuration
+## Estrutura do projeto
+- Séries, filmes, personagens, jogos, musica e hobby em `content.ts`
+- Músicas locais em `/audio`  
+- Capas das músicas em `/public`  
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## Músicas
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+- Coloquei os arquivos de áudio em /audio
+- As capas ficam no /public (PNG ou JPG)
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+## Personagens
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+- A lista está em content.ts
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+- Dá pra usar vídeos do YouTube ou TikTok
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+- Os cards mostram um preview e o modal abre o vídeo completo
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+- Visual
+
+- Animações e microinterações.
+
+- Rolagem virtual
+
+- A rolagem nativa é desativada
+
+- O scroll é simulado via JavaScript
+
+
+## Player de música
+
+- Faz fade-out ao pausar
+
+- Avança automaticamente ao final da faixa
+
+- Mostra a capa com uma animação leve
+
+## Vídeos
+
+O modal abre o player completo
+
+Acessibilidade e performance
+
+Animações feitas com Framer Motion.
+
+## Créditos
+
+- Projeto, design e conteúdo feito por mim.
+- Feito com React, TypeScript, Tailwind CSS, Vite e Framer Motion.
