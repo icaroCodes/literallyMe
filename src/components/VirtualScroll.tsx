@@ -12,6 +12,8 @@ export const VirtualScroll = ({ children }: Props) => {
   const rafRef = useRef<number | null>(null);
   const [progress, setProgress] = useState(0);
   const [maxScroll, setMaxScroll] = useState(0);
+  const isSmallRef = useRef(false);
+  const [isSmall, setIsSmall] = useState(false);
 
   const clamp = (v: number, min: number, max: number) => Math.max(min, Math.min(max, v));
 
@@ -23,23 +25,40 @@ export const VirtualScroll = ({ children }: Props) => {
 
   const apply = () => {
     if (!contentRef.current) return;
+    if (isSmallRef.current) return;
     contentRef.current.style.transform = `translate3d(0,${-posRef.current}px,0)`;
   };
 
-  const animate = () => {
-    posRef.current += (targetRef.current - posRef.current) * 0.12;
-    if (Math.abs(targetRef.current - posRef.current) < 0.5) posRef.current = targetRef.current;
-    apply();
-    setProgress(maxScroll ? posRef.current / maxScroll : 0);
-    rafRef.current = requestAnimationFrame(animate);
-  };
+  useEffect(() => {
+    const mq = window.matchMedia('(max-width: 640px)');
+    const update = () => {
+      setIsSmall(mq.matches);
+      isSmallRef.current = mq.matches;
+    };
+    update();
+    mq.addEventListener('change', update);
+    return () => mq.removeEventListener('change', update);
+  }, []);
 
   useEffect(() => {
+    if (isSmall) {
+      document.body.style.overflow = '';
+      document.documentElement.style.scrollBehavior = '';
+      if (rafRef.current) cancelAnimationFrame(rafRef.current);
+      return () => {};
+    }
     document.documentElement.style.scrollBehavior = 'auto';
     document.body.style.overflow = 'hidden';
-    measure();
-    animate();
-    const onResize = () => measure();
+    requestAnimationFrame(measure);
+    const frame = () => {
+      posRef.current += (targetRef.current - posRef.current) * 0.12;
+      if (Math.abs(targetRef.current - posRef.current) < 0.5) posRef.current = targetRef.current;
+      apply();
+      setProgress(maxScroll ? posRef.current / maxScroll : 0);
+      rafRef.current = requestAnimationFrame(frame);
+    };
+    rafRef.current = requestAnimationFrame(frame);
+    const onResize = () => requestAnimationFrame(measure);
     window.addEventListener('resize', onResize);
     const onWheel = (e: WheelEvent) => {
       e.preventDefault();
@@ -84,6 +103,8 @@ export const VirtualScroll = ({ children }: Props) => {
       targetRef.current = clamp(to - 80, 0, maxScroll);
     };
     document.addEventListener('click', onAnchor);
+    const ro = new ResizeObserver(() => requestAnimationFrame(measure));
+    if (contentRef.current) ro.observe(contentRef.current);
     return () => {
       document.body.style.overflow = '';
       document.documentElement.style.scrollBehavior = '';
@@ -93,29 +114,27 @@ export const VirtualScroll = ({ children }: Props) => {
       window.removeEventListener('touchmove', onTouchMove);
       window.removeEventListener('keydown', onKey);
       document.removeEventListener('click', onAnchor);
+      ro.disconnect();
       if (rafRef.current) cancelAnimationFrame(rafRef.current);
     };
-  }, [maxScroll]);
-
-  useEffect(() => {
-    measure();
-  }, [children]);
+  }, [isSmall, maxScroll]);
 
   return (
     <>
       <div ref={contentRef} className="will-change-transform">
         {children}
       </div>
-      <div className="fixed right-0 top-0 z-50 h-screen w-2.5 bg-black/5">
-        <motion.div
-          className="w-full rounded-full"
-          style={{ backgroundColor: '#b7d5e5' }}
-          initial={{ height: 0 }}
-          animate={{ height: `${Math.round(progress * 100)}%` }}
-          transition={{ ease: 'easeOut', duration: 0.2 }}
-        />
-      </div>
+      {!isSmall && (
+        <div className="fixed right-0 top-0 z-50 h-screen w-2.5 bg-black/5">
+          <motion.div
+            className="w-full rounded-full"
+            style={{ backgroundColor: '#b7d5e5' }}
+            initial={{ height: 0 }}
+            animate={{ height: `${Math.round(progress * 100)}%` }}
+            transition={{ ease: 'easeOut', duration: 0.2 }}
+          />
+        </div>
+      )}
     </>
   );
 };
-

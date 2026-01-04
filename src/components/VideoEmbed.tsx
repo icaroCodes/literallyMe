@@ -6,7 +6,7 @@ type Props = {
 const getEmbedSrc = (url: string) => {
   const lower = url.toLowerCase();
 
-  // YouTube
+
   if (lower.includes('youtube.com') || lower.includes('youtu.be')) {
     const idMatch =
       lower.match(/[?&]v=([^&]+)/)?.[1] ||
@@ -17,11 +17,11 @@ const getEmbedSrc = (url: string) => {
     }
   }
 
-  // TikTok
+
   if (lower.includes('tiktok.com')) {
     const idMatch = lower.match(/\/video\/(\d+)/)?.[1];
     if (idMatch) {
-      // TikTok embed endpoint
+
       return `https://www.tiktok.com/embed/v2/${idMatch}`;
     }
   }

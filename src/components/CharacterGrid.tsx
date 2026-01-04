@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { createPortal } from 'react-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X, Play } from 'lucide-react';
 import { favorites } from '../data/content';
@@ -35,37 +36,49 @@ export const CharacterGrid = () => {
         ))}
       </div>
 
-      <AnimatePresence>
-        {selectedChar && (
-          <div className="fixed inset-0 z-[60] flex items-center justify-center px-4">
+      {createPortal(
+        <AnimatePresence>
+          {selectedChar && (
             <motion.div
+              className="fixed inset-0 z-[60] flex items-center justify-center px-4"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              onClick={() => setSelectedChar(null)}
-              className="absolute inset-0 bg-black/60 backdrop-blur-sm"
-            />
-            <motion.div
-              layoutId={`card-${selectedChar.name}`}
-              className="relative w-full max-w-sm aspect-[9/16] bg-black rounded-3xl overflow-hidden shadow-2xl"
             >
-              <button
-                onClick={(e) => { e.stopPropagation(); setSelectedChar(null); }}
-                className="absolute top-4 right-4 z-10 p-2 bg-black/20 backdrop-blur-md rounded-full text-white hover:bg-black/40 transition-colors"
+              <motion.div
+                onClick={() => setSelectedChar(null)}
+                className="absolute inset-0 bg-black/60 backdrop-blur-sm"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+              />
+              <motion.div
+                layoutId={`card-${selectedChar.name}`}
+                initial={{ y: 24, opacity: 0, scale: 0.98 }}
+                animate={{ y: 0, opacity: 1, scale: 1 }}
+                exit={{ y: 24, opacity: 0, scale: 0.98 }}
+                transition={{ type: 'spring', stiffness: 260, damping: 24 }}
+                className="relative w-full max-w-sm aspect-[9/16] bg-black rounded-3xl overflow-hidden shadow-2xl"
               >
-                <X className="w-5 h-5" />
-              </button>
-              
-              <VideoEmbed url={selectedChar.videoUrl} />
+                <button
+                  onClick={(e) => { e.stopPropagation(); setSelectedChar(null); }}
+                  className="absolute top-4 right-4 z-10 p-2 bg-black/20 backdrop-blur-md rounded-full text-white hover:bg-black/40 transition-colors"
+                >
+                  <X className="w-5 h-5" />
+                </button>
+                
+                <VideoEmbed url={selectedChar.videoUrl} />
 
-              <div className="absolute bottom-0 left-0 w-full p-6 bg-gradient-to-t from-black/80 to-transparent">
-                 <h2 className="text-2xl font-bold text-white">{selectedChar.name}</h2>
-                 <p className="text-white/80">{selectedChar.role}</p>
-              </div>
+                <div className="absolute bottom-0 left-0 w-full p-6 bg-gradient-to-t from-black/80 to-transparent">
+                   <h2 className="text-2xl font-bold text-white">{selectedChar.name}</h2>
+                   <p className="text-white/80">{selectedChar.role}</p>
+                </div>
+              </motion.div>
             </motion.div>
-          </div>
-        )}
-      </AnimatePresence>
+          )}
+        </AnimatePresence>,
+        document.body
+      )}
     </>
   );
 };
