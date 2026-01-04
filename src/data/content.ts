@@ -28,7 +28,7 @@ export const favorites = {
   ],
   characters: [
     { name: "Dexter", role: "O açogueiro de Bay Harbor", videoUrl: "https://www.tiktok.com/@marcoas._/video/7589356976560213260" }, // Placeholder links
-    { name: "Brian Moser", role: "The Ice Truck Killer", videoUrl: "https://www.tiktok.com/@iso_l1v/video/7585422519159622968" },
+    { name: "Brian Moser", role: "The Ice Truck Killer", videoUrl: "https://www.tiktok.com/@xbineyz/video/7546520539628670263?q=brian%20moser%20edit&t=1767555627829" },
     { name: "Joe Goldberg", role: "Gerente de Livraria", videoUrl: "https://www.tiktok.com/@f13.ae/video/7568541911825403157" },
     { name: "Jesse Pinkman", role: "Ele é um Baiacu", videoUrl: "https://www.tiktok.com/@neff3ee/video/7557765686999747895?q=jesse%20pinkman%20edit&t=1767483931516" },
     { name: "Elliot", role: "Hacker", videoUrl: "https://www.tiktok.com/@vxbyjoe/video/7582036112449801494" },
