@@ -1,8 +1,9 @@
 export const favorites = {
   series: [
-    "Dexter",
-    "YOU",
     "Breaking Bad",
+    "Dexter",
+    "Better Call Saul",
+    "YOU",
     "La Casa de Papel",
     "Mr. Robot"
   ],
@@ -14,11 +15,13 @@ export const favorites = {
     "Zootopia 2"
   ],
   games: [
-    "GTA V",
     "Red Dead Redemption 2",
+    "GTA V",
     "The Last of Us Part I",
+    "The Last of Us Part II",
     "EA FC 26",
-    "Skate 4"
+    "Skate 4",
+    "Little Nightmares II"
   ],
   music: [
     { title: "Nuts", artist: "Lil Peep" },
@@ -30,9 +33,12 @@ export const favorites = {
     { name: "Dexter", role: "O açogueiro de Bay Harbor", videoUrl: "https://www.tiktok.com/@marcoas._/video/7589356976560213260" }, // Placeholder links
     { name: "Brian Moser", role: "The Ice Truck Killer", videoUrl: "https://www.tiktok.com/@xbineyz/video/7546520539628670263?q=brian%20moser%20edit&t=1767555627829" },
     { name: "Joe Goldberg", role: "Gerente de Livraria", videoUrl: "https://www.tiktok.com/@f13.ae/video/7568541911825403157" },
-    { name: "Jesse Pinkman", role: "Ele é um Baiacu", videoUrl: "https://www.tiktok.com/@neff3ee/video/7557765686999747895?q=jesse%20pinkman%20edit&t=1767483931516" },
+    { name: "Jesse Pinkman", role: "Ele é um Baiacu", videoUrl: "https://www.tiktok.com/@dutchstuff123/video/7578525028673719585" },
     { name: "Elliot", role: "Hacker", videoUrl: "https://www.tiktok.com/@vxbyjoe/video/7582036112449801494" },
-    { name: "David MacCall", role: "Obsessivo", videoUrl: "https://www.tiktok.com/@roxztp/video/7583126204144717086" }
+    { name: "David MacCall", role: "Obsessivo", videoUrl: "https://www.tiktok.com/@roxztp/video/7583126204144717086" },
+    { name: "Ellie", role: "Imune", videoUrl: "https://www.tiktok.com/@sukunas17/video/7583811540999015688" },
+    { name: "Joel", role: "Sobrevivente", videoUrl: "https://www.tiktok.com/@xbvnito/video/7504120560847179038?q=joel%20edit&t=1767994237631" },
+    { name: "Arthur Morgan", role: "Leal", videoUrl: "https://www.tiktok.com/@spflyy/video/7532922797073485064?q=edit%20arthur%20morgan&t=1767995283569"}
   ],
   hobby: "Programar"
 };
