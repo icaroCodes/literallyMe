@@ -1,5 +1,3 @@
-import type { desc } from "framer-motion/client";
-
 // exporta o objeto `favorites`, onde ficam todos os dados usados no site
 export const favorites = {
   // Lista de séries favoritas
