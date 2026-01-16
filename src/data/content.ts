@@ -43,7 +43,7 @@ export const favorites = {
     { name: "Jesse Pinkman", description: "Ele é um Baiacu", videoUrl: "https://www.tiktok.com/@dutchstuff123/video/7578525028673719585" },
     { name: "Elliot", description: "Hacker", videoUrl: "https://www.tiktok.com/@vxbyjoe/video/7582036112449801494" },
     { name: "David MacCall", description: "Obsessivo", videoUrl: "https://www.tiktok.com/@roxztp/video/7583126204144717086" },
-    { name: "Ellie", description: "Imune", videoUrl: "https://www.tiktok.com/@sukunas17/video/7583811540999015688" },
+    { name: "Ellie", description: "Imune", videoUrl: "https://www.tiktok.com/@gea_edits_/video/7538491991428975894?q=ellie%20the%20last%20of%20us&t=1768590052977" },
     { name: "Joel", description: "Sobrevivente", videoUrl: "https://www.tiktok.com/@xbvnito/video/7504120560847179038?q=joel%20edit&t=1767994237631" },
     { name: "Arthur Morgan", description: "Leal", videoUrl: "https://www.tiktok.com/@spflyy/video/7532922797073485064?q=edit%20arthur%20morgan&t=1767995283569"}
   ],
